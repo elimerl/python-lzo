@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8"]
+        arch: ["x64", "arm64"]
 #        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     name: ${{ matrix.python-version }}
     steps:
@@ -29,7 +30,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: x64
+          architecture: ${{ matrix.arch }}
       - name: Build wheel
         env:
           LZO_DIR: ./lzo-2.10
